@@ -26,17 +26,7 @@ func (game *tennisGame1) WonPoint(playerName string) {
 func (game *tennisGame1) GetScore() string {
 	score := ""
 	if game.tied() {
-		switch game.scorePlayer1 {
-		case 0:
-			score = "Love-All"
-		case 1:
-			score = "Fifteen-All"
-		case 2:
-			score = "Thirty-All"
-		default:
-			score = "Deuce"
-		}
-		return score
+		return tiedScore(game)
 	}
 
 	if game.scorePlayer1 >= 4 || game.scorePlayer2 >= 4 {
@@ -59,6 +49,19 @@ func (game *tennisGame1) GetScore() string {
 	}
 
 	return stringValueFor(game.scorePlayer1) + "-" + stringValueFor(game.scorePlayer2)
+}
+
+func tiedScore(game *tennisGame1) string {
+	switch game.scorePlayer1 {
+	case 0:
+		return "Love-All"
+	case 1:
+		return "Fifteen-All"
+	case 2:
+		return "Thirty-All"
+	default:
+		return "Deuce"
+	}
 }
 
 func (game *tennisGame1) tied() bool {
@@ -85,8 +88,7 @@ func stringValueFor(score int) string {
 		return "Fifteen"
 	case 2:
 		return "Thirty"
-	case 3:
+	default:
 		return "Forty"
 	}
-	return ""
 }
