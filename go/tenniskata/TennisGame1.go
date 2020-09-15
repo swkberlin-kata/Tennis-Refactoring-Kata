@@ -53,6 +53,7 @@ func (game *tennisGame1) GetScore() string {
 		}
 		return score
 	}
+
 	for i := 1; i < 3; i++ {
 		if i == 1 {
 			tempScore = game.m_score1
