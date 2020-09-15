@@ -60,10 +60,11 @@ func (game *tennisGame1) WonPoint(playerName string) {
 }
 
 func leadingPlayer(differenceInPoints int) string {
-	if differenceInPoints < 0 {
+	if differenceInPoints >= 0 {
+		return " player1"
+	} else {
 		return " player2"
 	}
-	return " player1"
 }
 
 func winOrAdvantageFor(points int) string {
