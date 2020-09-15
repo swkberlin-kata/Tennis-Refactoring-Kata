@@ -53,10 +53,7 @@ func (game *tennisGame1) GetScore() string {
 		return score
 	}
 
-	score = stringValueFor(game.m_score1)
-	score += "-"
-	score += stringValueFor(game.m_score2)
-	return score
+	return stringValueFor(game.m_score1) + "-" + stringValueFor(game.m_score2)
 }
 
 func stringValueFor(score int) string {
