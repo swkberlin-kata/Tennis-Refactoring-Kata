@@ -34,18 +34,14 @@ func (game *tennisGame1) GetScore() string {
 		differenceInPoints := game.scorePlayer1 - game.scorePlayer2
 
 		if game.advantageForPlayerOne(differenceInPoints) {
-
-			score = winOrAdvantage(differenceInPoints) + " player1"
-			return score
+			return winOrAdvantage(differenceInPoints) + " player1"
 		}
 		if game.advantageForPlayerTwo(differenceInPoints) {
-			score = winOrAdvantage(differenceInPoints) + " player2"
-			return score
+			return winOrAdvantage(differenceInPoints) + " player2"
 		}
 
 		if game.winForPlayerOne(differenceInPoints) {
-			score = winOrAdvantage(differenceInPoints) + " player1"
-			return score
+			return winOrAdvantage(differenceInPoints) + " player1"
 		}
 		return winOrAdvantage(differenceInPoints) + " player2"
 	}
