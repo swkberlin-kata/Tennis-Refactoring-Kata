@@ -25,7 +25,7 @@ func (game *tennisGame1) WonPoint(playerName string) {
 
 func (game *tennisGame1) GetScore() string {
 	score := ""
-	if game.scorePlayer1 == game.scorePlayer2 {
+	if game.tied() {
 		switch game.scorePlayer1 {
 		case 0:
 			score = "Love-All"
@@ -59,6 +59,10 @@ func (game *tennisGame1) GetScore() string {
 	}
 
 	return stringValueFor(game.scorePlayer1) + "-" + stringValueFor(game.scorePlayer2)
+}
+
+func (game *tennisGame1) tied() bool {
+	return game.scorePlayer1 == game.scorePlayer2
 }
 
 func (game *tennisGame1) winForPlayerOne(differenceInPoints int) bool {
