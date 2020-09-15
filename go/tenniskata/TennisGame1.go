@@ -54,7 +54,7 @@ func (game *tennisGame1) GetScore() string {
 		return score
 	}
 
-	score = stringValueForScore(game.m_score1)
+	score = stringValueFor(game.m_score1)
 
 	score += "-"
 	tempScore = game.m_score2
@@ -73,8 +73,8 @@ func (game *tennisGame1) GetScore() string {
 	return score
 }
 
-func stringValueForScore(tempScore int) string {
-	switch tempScore {
+func stringValueFor(score int) string {
+	switch score {
 	case 0:
 		return "Love"
 	case 1:
