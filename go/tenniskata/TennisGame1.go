@@ -25,7 +25,6 @@ func (game *tennisGame1) WonPoint(playerName string) {
 
 func (game *tennisGame1) GetScore() string {
 	score := ""
-	tempScore := 0
 	if game.m_score1 == game.m_score2 {
 		switch game.m_score1 {
 		case 0:
@@ -55,21 +54,8 @@ func (game *tennisGame1) GetScore() string {
 	}
 
 	score = stringValueFor(game.m_score1)
-
 	score += "-"
-	tempScore = game.m_score2
-
-	switch tempScore {
-	case 0:
-		score += "Love"
-	case 1:
-		score += "Fifteen"
-	case 2:
-		score += "Thirty"
-	case 3:
-		score += "Forty"
-	}
-
+	score += stringValueFor(game.m_score2)
 	return score
 }
 
