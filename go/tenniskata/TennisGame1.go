@@ -27,28 +27,16 @@ func (game *tennisGame1) GetScore() string {
 	return resultFor(game.scorePlayer1) + "-" + resultFor(game.scorePlayer2)
 }
 
-func differenceInPoints(game *tennisGame1) int {
-	return game.scorePlayer1 - game.scorePlayer2
+func (game *tennisGame1) tied() bool {
+	return game.scorePlayer1 == game.scorePlayer2
 }
 
 func (game *tennisGame1) winOrAdvantage() bool {
 	return game.scorePlayer1 >= 4 || game.scorePlayer2 >= 4
 }
 
-func (game *tennisGame1) tied() bool {
-	return game.scorePlayer1 == game.scorePlayer2
-}
-
-func (game *tennisGame1) winForPlayerOne(differenceInPoints int) bool {
-	return differenceInPoints >= 2
-}
-
-func (game *tennisGame1) advantageForPlayerTwo(differenceInPoints int) bool {
-	return differenceInPoints == -1
-}
-
-func (game *tennisGame1) advantageForPlayerOne(differenceInPoints int) bool {
-	return differenceInPoints == 1
+func differenceInPoints(game *tennisGame1) int {
+	return game.scorePlayer1 - game.scorePlayer2
 }
 
 func (game *tennisGame1) WonPoint(playerName string) {
