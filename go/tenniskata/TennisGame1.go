@@ -57,19 +57,33 @@ func (game *tennisGame1) GetScore() string {
 	for i := 1; i < 3; i++ {
 		if i == 1 {
 			tempScore = game.m_score1
+
+			switch tempScore {
+			case 0:
+				score += "Love"
+			case 1:
+				score += "Fifteen"
+			case 2:
+				score += "Thirty"
+			case 3:
+				score += "Forty"
+			}
+
 		} else {
 			score += "-"
 			tempScore = game.m_score2
-		}
-		switch tempScore {
-		case 0:
-			score += "Love"
-		case 1:
-			score += "Fifteen"
-		case 2:
-			score += "Thirty"
-		case 3:
-			score += "Forty"
+
+			switch tempScore {
+			case 0:
+				score += "Love"
+			case 1:
+				score += "Fifteen"
+			case 2:
+				score += "Thirty"
+			case 3:
+				score += "Forty"
+			}
+
 		}
 	}
 	return score
