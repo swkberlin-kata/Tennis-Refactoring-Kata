@@ -41,19 +41,36 @@ func (game *tennisGame1) GetScore() string {
 
 	if game.scorePlayer1 >= 4 || game.scorePlayer2 >= 4 {
 		differenceInPoints := game.scorePlayer1 - game.scorePlayer2
-		if differenceInPoints == 1 {
+		if game.advantageForPlayerOne(differenceInPoints) {
 			score = "Advantage player1"
-		} else if differenceInPoints == -1 {
-			score = "Advantage player2"
-		} else if differenceInPoints >= 2 {
-			score = "Win for player1"
-		} else {
-			score = "Win for player2"
+			return score
 		}
-		return score
+		if game.advantageForPlayerTwo(differenceInPoints) {
+			score = "Advantage player2"
+			return score
+		}
+
+		if game.winForPlayerOne(differenceInPoints) {
+			score = "Win for player1"
+			return score
+		}
+
+		return "Win for player2"
 	}
 
 	return stringValueFor(game.scorePlayer1) + "-" + stringValueFor(game.scorePlayer2)
+}
+
+func (game *tennisGame1) winForPlayerOne(differenceInPoints int) bool {
+	return differenceInPoints >= 2
+}
+
+func (game *tennisGame1) advantageForPlayerTwo(differenceInPoints int) bool {
+	return differenceInPoints == -1
+}
+
+func (game *tennisGame1) advantageForPlayerOne(differenceInPoints int) bool {
+	return differenceInPoints == 1
 }
 
 func stringValueFor(score int) string {
