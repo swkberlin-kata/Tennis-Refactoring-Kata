@@ -15,14 +15,6 @@ func TennisGame1(player1Name string, player2Name string) TennisGame {
 	return game
 }
 
-func (game *tennisGame1) WonPoint(playerName string) {
-	if playerName == "player1" {
-		game.scorePlayer1 += 1
-	} else {
-		game.scorePlayer2 += 1
-	}
-}
-
 func (game *tennisGame1) GetScore() string {
 	if game.tied() {
 		return tiedScore(game)
@@ -32,42 +24,15 @@ func (game *tennisGame1) GetScore() string {
 		return winOrAdvantageFor(differenceInPoints(game)) + leadingPlayer(differenceInPoints(game))
 	}
 
-	return stringValueFor(game.scorePlayer1) + "-" + stringValueFor(game.scorePlayer2)
+	return resultFor(game.scorePlayer1) + "-" + resultFor(game.scorePlayer2)
 }
 
 func differenceInPoints(game *tennisGame1) int {
 	return game.scorePlayer1 - game.scorePlayer2
 }
 
-func leadingPlayer(differenceInPoints int) string {
-	if differenceInPoints < 0 {
-		return " player2"
-	}
-	return " player1"
-}
-
-func winOrAdvantageFor(points int) string {
-	if points >= 2 || points <= -2 {
-		return "Win for"
-	}
-	return "Advantage"
-}
-
 func (game *tennisGame1) winOrAdvantage() bool {
 	return game.scorePlayer1 >= 4 || game.scorePlayer2 >= 4
-}
-
-func tiedScore(game *tennisGame1) string {
-	switch game.scorePlayer1 {
-	case 0:
-		return "Love-All"
-	case 1:
-		return "Fifteen-All"
-	case 2:
-		return "Thirty-All"
-	default:
-		return "Deuce"
-	}
 }
 
 func (game *tennisGame1) tied() bool {
@@ -86,7 +51,42 @@ func (game *tennisGame1) advantageForPlayerOne(differenceInPoints int) bool {
 	return differenceInPoints == 1
 }
 
-func stringValueFor(score int) string {
+func (game *tennisGame1) WonPoint(playerName string) {
+	if playerName == "player1" {
+		game.scorePlayer1 += 1
+	} else {
+		game.scorePlayer2 += 1
+	}
+}
+
+func leadingPlayer(differenceInPoints int) string {
+	if differenceInPoints < 0 {
+		return " player2"
+	}
+	return " player1"
+}
+
+func winOrAdvantageFor(points int) string {
+	if points >= 2 || points <= -2 {
+		return "Win for"
+	}
+	return "Advantage"
+}
+
+func tiedScore(game *tennisGame1) string {
+	switch game.scorePlayer1 {
+	case 0:
+		return "Love-All"
+	case 1:
+		return "Fifteen-All"
+	case 2:
+		return "Thirty-All"
+	default:
+		return "Deuce"
+	}
+}
+
+func resultFor(score int) string {
 	switch score {
 	case 0:
 		return "Love"
