@@ -24,7 +24,6 @@ func (game *tennisGame1) WonPoint(playerName string) {
 }
 
 func (game *tennisGame1) GetScore() string {
-	score := ""
 	if game.tied() {
 		return tiedScore(game)
 	}
@@ -32,21 +31,17 @@ func (game *tennisGame1) GetScore() string {
 	if game.winOrAdvantage() {
 
 		differenceInPoints := game.scorePlayer1 - game.scorePlayer2
-
-		if game.advantageForPlayerOne(differenceInPoints) {
-			return winOrAdvantage(differenceInPoints) + " player1"
-		}
-		if game.advantageForPlayerTwo(differenceInPoints) {
-			return winOrAdvantage(differenceInPoints) + " player2"
-		}
-
-		if game.winForPlayerOne(differenceInPoints) {
-			return winOrAdvantage(differenceInPoints) + " player1"
-		}
-		return winOrAdvantage(differenceInPoints) + " player2"
+		return winOrAdvantage(differenceInPoints) + leadingPlayerAsString(differenceInPoints)
 	}
 
 	return stringValueFor(game.scorePlayer1) + "-" + stringValueFor(game.scorePlayer2)
+}
+
+func leadingPlayerAsString(differenceInPoints int) string {
+	if differenceInPoints < 0 {
+		return " player2"
+	}
+	return " player1"
 }
 
 func winOrAdvantage(points int) string {
