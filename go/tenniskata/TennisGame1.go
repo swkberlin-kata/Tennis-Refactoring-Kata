@@ -15,6 +15,13 @@ func TennisGame1(player1Name string, player2Name string) TennisGame {
 	return game
 }
 
+var pointsToScore = map[int]string{
+	0: "Love",
+	1: "Fifteen",
+	2: "Thirty",
+	3: "Forty",
+}
+
 func (game *tennisGame1) GetScore() string {
 	if game.tied() {
 		return tiedScore(game)
@@ -24,7 +31,7 @@ func (game *tennisGame1) GetScore() string {
 		return winOrAdvantageFor(differenceInPoints(game)) + playerLeadingBasedOn(differenceInPoints(game))
 	}
 
-	return resultFor(game.scorePlayer1) + "-" + resultFor(game.scorePlayer2)
+	return pointsToScore[game.scorePlayer1] + "-" + pointsToScore[game.scorePlayer2]
 }
 
 func (game *tennisGame1) tied() bool {
@@ -72,18 +79,5 @@ func tiedScore(game *tennisGame1) string {
 		return "Thirty-All"
 	default:
 		return "Deuce"
-	}
-}
-
-func resultFor(score int) string {
-	switch score {
-	case 0:
-		return "Love"
-	case 1:
-		return "Fifteen"
-	case 2:
-		return "Thirty"
-	default:
-		return "Forty"
 	}
 }
