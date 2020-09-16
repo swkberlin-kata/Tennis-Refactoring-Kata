@@ -1,10 +1,10 @@
 package tenniskata
 
 type tennisGame1 struct {
-	scorePlayer1 int
-	scorePlayer2 int
-	player1Name  string
-	player2Name  string
+	player1Points int
+	player2Points int
+	player1Name   string
+	player2Name   string
 }
 
 func TennisGame1(player1Name string, player2Name string) TennisGame {
@@ -31,26 +31,26 @@ func (game *tennisGame1) GetScore() string {
 		return winOrAdvantageFor(differenceInPoints(game)) + playerLeadingBasedOn(differenceInPoints(game))
 	}
 
-	return pointsToScore[game.scorePlayer1] + "-" + pointsToScore[game.scorePlayer2]
+	return pointsToScore[game.player1Points] + "-" + pointsToScore[game.player2Points]
 }
 
 func (game *tennisGame1) tied() bool {
-	return game.scorePlayer1 == game.scorePlayer2
+	return game.player1Points == game.player2Points
 }
 
 func (game *tennisGame1) winOrAdvantage() bool {
-	return game.scorePlayer1 >= 4 || game.scorePlayer2 >= 4
+	return game.player1Points >= 4 || game.player2Points >= 4
 }
 
 func differenceInPoints(game *tennisGame1) int {
-	return game.scorePlayer1 - game.scorePlayer2
+	return game.player1Points - game.player2Points
 }
 
 func (game *tennisGame1) WonPoint(playerName string) {
 	if playerName == "player1" {
-		game.scorePlayer1 += 1
+		game.player1Points += 1
 	} else {
-		game.scorePlayer2 += 1
+		game.player2Points += 1
 	}
 }
 
@@ -70,7 +70,7 @@ func winOrAdvantageFor(points int) string {
 }
 
 func tiedScore(game *tennisGame1) string {
-	switch game.scorePlayer1 {
+	switch game.player1Points {
 	case 0:
 		return "Love-All"
 	case 1:
