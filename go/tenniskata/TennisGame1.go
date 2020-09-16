@@ -1,31 +1,30 @@
 package tenniskata
 
 type tennisGame1 struct {
-	m_score1    int
-	m_score2    int
+	mScore1     int
+	mScore2     int
 	player1Name string
 	player2Name string
 }
 
 func TennisGame1(player1Name string, player2Name string) TennisGame {
-	game := &tennisGame1{
+	return &tennisGame1{
 		player1Name: player1Name,
-		player2Name: player2Name}
-
-	return game
+		player2Name: player2Name,
+	}
 }
 
 func (game *tennisGame1) WonPoint(playerName string) {
 	if playerName == "player1" {
-		game.m_score1 += 1
-	} else {
-		game.m_score2 += 1
+		game.mScore1 += 1
+		return
 	}
+	game.mScore2 += 1
 }
 
 func (game *tennisGame1) GetScore() string {
-	if game.m_score1 == game.m_score2 {
-		switch game.m_score1 {
+	if game.mScore1 == game.mScore2 {
+		switch game.mScore1 {
 		case 0:
 			return "Love-All"
 		case 1:
@@ -34,8 +33,8 @@ func (game *tennisGame1) GetScore() string {
 			return "Thirty-All"
 		}
 		return "Deuce"
-	} else if game.m_score1 >= 4 || game.m_score2 >= 4 {
-		minusResult := game.m_score1 - game.m_score2
+	} else if game.mScore1 >= 4 || game.mScore2 >= 4 {
+		minusResult := game.mScore1 - game.mScore2
 		if minusResult == 1 {
 			return "Advantage player1"
 		} else if minusResult == -1 {
@@ -49,10 +48,10 @@ func (game *tennisGame1) GetScore() string {
 	tempScore := 0
 	for i := 1; i < 3; i++ {
 		if i == 1 {
-			tempScore = game.m_score1
+			tempScore = game.mScore1
 		} else {
 			score += "-"
-			tempScore = game.m_score2
+			tempScore = game.mScore2
 		}
 		switch tempScore {
 		case 0:
