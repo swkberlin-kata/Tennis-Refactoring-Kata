@@ -15,6 +15,7 @@ func TennisGame1(player1Name string, player2Name string) TennisGame {
 	return game
 }
 
+//mari
 func (game *tennisGame1) WonPoint(playerName string) {
 	if playerName == "player1" {
 		game.m_score1 += 1
