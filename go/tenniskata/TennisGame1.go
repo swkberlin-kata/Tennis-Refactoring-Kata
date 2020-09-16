@@ -21,8 +21,6 @@ func (game *tennisGame1) WonPoint(playerName string) {
 		game.m_score1++
 	case game.player2Name:
 		game.m_score2++
-	default:
-		panic("bad player name")
 	}
 }
 
