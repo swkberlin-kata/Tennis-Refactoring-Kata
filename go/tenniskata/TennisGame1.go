@@ -14,11 +14,15 @@ func TennisGame1(player1Name string, player2Name string) TennisGame {
 	}
 }
 
+// WonPoint is when playerName has scored a point.
 func (game *tennisGame1) WonPoint(playerName string) {
-	if playerName == game.player1Name {
-		game.m_score1 += 1
-	} else {
-		game.m_score2 += 1
+	switch playerName {
+	case game.player1Name:
+		game.m_score1++
+	case game.player2Name:
+		game.m_score2++
+	default:
+		panic("bad player name")
 	}
 }
 
@@ -26,52 +30,46 @@ var game1ScoreToName = map[int]string{
 	0: "Love",
 	1: "Fifteen",
 	2: "Thirty",
+	3: "Forty",
 }
 
 func (game *tennisGame1) GetScore() string {
 	if game.m_score1 == game.m_score2 {
 		// There are special names for each of the scores where they are tied.
 
-		if name, ok := game1ScoreToName[game.m_score1]; ok {
-			return name + "-All"
+		if score, ok := game1ScoreToName[game.m_score1]; ok && score != "Forty" {
+			return score + "-All"
 		}
 
 		return "Deuce"
 	}
 
 	if game.m_score1 >= 4 || game.m_score2 >= 4 {
-		minusResult := game.m_score1 - game.m_score2
+		// One of the players could win here.
 
-		if minusResult == 1 {
+		scoreDifference := game.m_score1 - game.m_score2
+
+		if scoreDifference == 1 {
 			return "Advantage player1"
 		}
 
-		if minusResult == -1 {
+		if scoreDifference == -1 {
 			return "Advantage player2"
 		}
 
-		if minusResult >= 2 {
+		if scoreDifference >= 2 {
 			return "Win for player1"
 		}
 
 		return "Win for player2"
 	}
 
-	var score string
+	// Otherwise, just name of points for p1, dash name of points for p2
 
-	if name, ok := game1ScoreToName[game.m_score1]; ok {
-		score += name
-	} else {
-		score += "Forty"
-	}
+	p1score := game1ScoreToName[game.m_score1]
 
-	score += "-"
+	p2score := game1ScoreToName[game.m_score2]
+	
 
-	if name, ok := game1ScoreToName[game.m_score2]; ok {
-		score += name
-	} else {
-		score += "Forty"
-	}
-
-	return score
+	return p1score + "-" + p2score
 }
