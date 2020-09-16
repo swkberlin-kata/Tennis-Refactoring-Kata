@@ -36,6 +36,7 @@ func (game *tennisGame1) GetScore() string {
 		// There are special names for each of the scores where they are tied.
 
 		if score, ok := game1ScoreToName[game.score1]; ok && score != "Forty" {
+			// if score is not in map  then score = "", and ok == false
 			return score + "-All"
 		}
 
