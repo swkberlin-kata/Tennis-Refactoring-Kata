@@ -58,21 +58,19 @@ func (game *tennisGame1) GetScore() string {
 	}
 
 	var score string
-	var tempScore int
 
-	for i := 1; i < 3; i++ {
-		if i == 1 {
-			tempScore = game.m_score1
-		} else {
-			score += "-"
-			tempScore = game.m_score2
-		}
+	if name, ok := game1ScoreToName[game.m_score1]; ok {
+		score += name
+	} else {
+		score += "Forty"
+	}
 
-		if name, ok := game1ScoreToName[tempScore]; ok {
-			score += name
-		} else {
-			score += "Forty"
-		}
+	score += "-"
+
+	if name, ok := game1ScoreToName[game.m_score2]; ok {
+		score += name
+	} else {
+		score += "Forty"
 	}
 
 	return score
