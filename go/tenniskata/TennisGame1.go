@@ -1,5 +1,14 @@
 package tenniskata
 
+scores = {
+	0 : 'Love',
+	1 : 'Fifteen',
+	2 : 'Thirty',
+	4 : 'Forty'
+}
+
+var scores = [10]string
+
 type tennisGame1 struct {
 	m_score1    int
 	m_score2    int
