@@ -113,34 +113,10 @@ func (game *tennisGame2) GetScore() string {
 	return score
 }
 
-func (game *tennisGame2) SetP1Score(number int) {
-
-	for i := 0; i < number; i++ {
-		game.P1Score()
-	}
-
-}
-
-func (game *tennisGame2) SetP2Score(number int) {
-
-	for i := 0; i < number; i++ {
-		game.P2Score()
-	}
-
-}
-
-func (game *tennisGame2) P1Score() {
-	game.P1point++
-}
-
-func (game *tennisGame2) P2Score() {
-	game.P2point++
-}
-
 func (game *tennisGame2) WonPoint(player string) {
-	if player == "player1" {
-		game.P1Score()
-	} else {
-		game.P2Score()
+	if player == game.player1Name {
+		game.P1point++
+		return
 	}
+	game.P2point++
 }
