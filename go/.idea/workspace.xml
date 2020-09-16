@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17353f67-f14e-4b59-91d3-3990ee4f2128" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tenniskata/TennisGame1.go" beforeDir="false" afterPath="$PROJECT_DIR$/tenniskata/TennisGame1.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +47,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -67,5 +70,9 @@
       <screen x="0" y="23" width="1440" height="806" />
     </state>
     <state x="520" y="362" key="#GOROOT/0.23.1440.806@0.23.1440.806" timestamp="1600259495330" />
+    <state x="2184" y="-926" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600262447441">
+      <screen x="1440" y="-1308" width="2560" height="1440" />
+    </state>
+    <state x="2184" y="-926" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900/1440.-1308.2560.1440@1440.-1308.2560.1440" timestamp="1600262447441" />
   </component>
 </project>
