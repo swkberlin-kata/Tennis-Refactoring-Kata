@@ -1,13 +1,6 @@
 package tenniskata
 
-scores = {
-	0 : 'Love',
-	1 : 'Fifteen',
-	2 : 'Thirty',
-	4 : 'Forty'
-}
-
-var scores = [10]string
+var scoreNames = [4]string{"Love", "Fifteen", "Thirty", "Forty"}
 
 type tennisGame1 struct {
 	m_score1    int
@@ -36,16 +29,17 @@ func (game *tennisGame1) GetScore() string {
 	score := ""
 	tempScore := 0
 	if game.m_score1 == game.m_score2 {
-		switch game.m_score1 {
-		case 0:
-			score = "Love-All"
-		case 1:
-			score = "Fifteen-All"
-		case 2:
-			score = "Thirty-All"
-		default:
-			score = "Deuce"
-		}
+		score = scoreNames[game.m_score1] + "-All"
+		// switch game.m_score1 {
+		// case 0:
+		// 	score = "Love-All"
+		// case 1:
+		// 	score = "Fifteen-All"
+		// case 2:
+		// 	score = "Thirty-All"
+		// default:
+		// 	score = "Deuce"
+		// }
 	} else if game.m_score1 >= 4 || game.m_score2 >= 4 {
 		minusResult := game.m_score1 - game.m_score2
 		if minusResult == 1 {
@@ -65,16 +59,7 @@ func (game *tennisGame1) GetScore() string {
 				score += "-"
 				tempScore = game.m_score2
 			}
-			switch tempScore {
-			case 0:
-				score += "Love"
-			case 1:
-				score += "Fifteen"
-			case 2:
-				score += "Thirty"
-			case 3:
-				score += "Forty"
-			}
+			score += scoreNames[tempScore]
 		}
 	}
 	return score
