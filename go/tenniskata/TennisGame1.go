@@ -15,7 +15,6 @@ func TennisGame1(player1Name string, player2Name string) TennisGame {
 	return game
 }
 
-//mari
 func (game *tennisGame1) WonPoint(playerName string) {
 	if playerName == "player1" {
 		game.m_score1 += 1
@@ -25,48 +24,45 @@ func (game *tennisGame1) WonPoint(playerName string) {
 }
 
 func (game *tennisGame1) GetScore() string {
-	score := ""
-	tempScore := 0
 	if game.m_score1 == game.m_score2 {
 		switch game.m_score1 {
 		case 0:
-			score = "Love-All"
+			return "Love-All"
 		case 1:
-			score = "Fifteen-All"
+			return "Fifteen-All"
 		case 2:
-			score = "Thirty-All"
-		default:
-			score = "Deuce"
+			return "Thirty-All"
 		}
+		return "Deuce"
 	} else if game.m_score1 >= 4 || game.m_score2 >= 4 {
 		minusResult := game.m_score1 - game.m_score2
 		if minusResult == 1 {
-			score = "Advantage player1"
+			return "Advantage player1"
 		} else if minusResult == -1 {
-			score = "Advantage player2"
+			return "Advantage player2"
 		} else if minusResult >= 2 {
-			score = "Win for player1"
-		} else {
-			score = "Win for player2"
+			return "Win for player1"
 		}
-	} else {
-		for i := 1; i < 3; i++ {
-			if i == 1 {
-				tempScore = game.m_score1
-			} else {
-				score += "-"
-				tempScore = game.m_score2
-			}
-			switch tempScore {
-			case 0:
-				score += "Love"
-			case 1:
-				score += "Fifteen"
-			case 2:
-				score += "Thirty"
-			case 3:
-				score += "Forty"
-			}
+		return "Win for player2"
+	}
+	score := ""
+	tempScore := 0
+	for i := 1; i < 3; i++ {
+		if i == 1 {
+			tempScore = game.m_score1
+		} else {
+			score += "-"
+			tempScore = game.m_score2
+		}
+		switch tempScore {
+		case 0:
+			score += "Love"
+		case 1:
+			score += "Fifteen"
+		case 2:
+			score += "Thirty"
+		case 3:
+			score += "Forty"
 		}
 	}
 	return score
