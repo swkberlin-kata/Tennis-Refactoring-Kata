@@ -1,8 +1,8 @@
 package tenniskata
 
 type tennisGame1 struct {
-	m_score1    int
-	m_score2    int
+	score1    int
+	score2    int
 	player1Name string
 	player2Name string
 }
@@ -18,9 +18,9 @@ func TennisGame1(player1Name string, player2Name string) TennisGame {
 func (game *tennisGame1) WonPoint(playerName string) {
 	switch playerName {
 	case game.player1Name:
-		game.m_score1++
+		game.score1++
 	case game.player2Name:
-		game.m_score2++
+		game.score2++
 	}
 }
 
@@ -32,20 +32,20 @@ var game1ScoreToName = map[int]string{
 }
 
 func (game *tennisGame1) GetScore() string {
-	if game.m_score1 == game.m_score2 {
+	if game.score1 == game.score2 {
 		// There are special names for each of the scores where they are tied.
 
-		if score, ok := game1ScoreToName[game.m_score1]; ok && score != "Forty" {
+		if score, ok := game1ScoreToName[game.score1]; ok && score != "Forty" {
 			return score + "-All"
 		}
 
 		return "Deuce"
 	}
 
-	if game.m_score1 >= 4 || game.m_score2 >= 4 {
+	if game.score1 >= 4 || game.score2 >= 4 {
 		// One of the players could win here.
 
-		scoreDifference := game.m_score1 - game.m_score2
+		scoreDifference := game.score1 - game.score2
 
 		if scoreDifference == 1 {
 			return "Advantage player1"
@@ -64,9 +64,9 @@ func (game *tennisGame1) GetScore() string {
 
 	// Otherwise, just name of points for p1, dash name of points for p2
 
-	p1score := game1ScoreToName[game.m_score1]
+	p1score := game1ScoreToName[game.score1]
 
-	p2score := game1ScoreToName[game.m_score2]
+	p2score := game1ScoreToName[game.score2]
 	
 
 	return p1score + "-" + p2score
