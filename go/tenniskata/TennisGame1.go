@@ -75,14 +75,9 @@ func winOrAdvantageFor(points int) string {
 }
 
 func tiedScore(g *game1) string {
-	switch g.player1.points {
-	case 0:
-		return "Love-All"
-	case 1:
-		return "Fifteen-All"
-	case 2:
-		return "Thirty-All"
-	default:
+	score := g.player1.Score()
+	if score == "" || score == "Forty" {
 		return "Deuce"
 	}
+	return score + "-All"
 }
