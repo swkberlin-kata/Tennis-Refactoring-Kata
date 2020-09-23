@@ -22,7 +22,7 @@ var pointsToScore = map[int]string{
 }
 
 func (game *tennisGame1) GetScore() string {
-	if game.tied() {
+	if game.player1Points == game.player2Points {
 		return tiedScore(game)
 	}
 
@@ -33,10 +33,6 @@ func (game *tennisGame1) GetScore() string {
 	}
 
 	return pointsToScore[game.player1Points] + "-" + pointsToScore[game.player2Points]
-}
-
-func (game *tennisGame1) tied() bool {
-	return game.player1Points == game.player2Points
 }
 
 func (game *tennisGame1) winOrAdvantage() bool {
