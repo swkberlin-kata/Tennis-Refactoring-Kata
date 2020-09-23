@@ -7,9 +7,9 @@ var pointsToScore = map[int]string{
 	3: "Forty",
 }
 
-type game1Player struct{
+type game1Player struct {
 	points int
-	name string
+	name   string
 }
 
 func (p *game1Player) Score() string {
@@ -22,8 +22,8 @@ type game1 struct {
 
 func TennisGame1(player1Name string, player2Name string) TennisGame {
 	return &game1{
-		player1: game1Player{ name: player1Name },
-		player2: game1Player{ name: player2Name },
+		player1: game1Player{name: player1Name},
+		player2: game1Player{name: player2Name},
 	}
 }
 
