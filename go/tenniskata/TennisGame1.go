@@ -50,9 +50,10 @@ func differenceInPoints(g *game1) int {
 }
 
 func (g *game1) WonPoint(playerName string) {
-	if playerName == "player1" {
+	switch playerName {
+	case g.player1.name:
 		g.player1.points += 1
-	} else {
+	case g.player2.name:
 		g.player2.points += 1
 	}
 }
