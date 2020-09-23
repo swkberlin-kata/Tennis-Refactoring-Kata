@@ -29,7 +29,7 @@ func (game *tennisGame1) GetScore() string {
 	if game.winOrAdvantage() {
 		diff := differenceInPoints(game)
 
-		return winOrAdvantageFor(diff) + playerLeadingBasedOn(diff)
+		return winOrAdvantageFor(diff) + " " + game.leadingPlayer()
 	}
 
 	return pointsToScore[game.player1Points] + "-" + pointsToScore[game.player2Points]
@@ -51,12 +51,13 @@ func (game *tennisGame1) WonPoint(playerName string) {
 	}
 }
 
-func playerLeadingBasedOn(differenceInPoints int) string {
-	if differenceInPoints >= 0 {
-		return " player1"
-	} else {
-		return " player2"
+// will not return proper if equal.
+func (game *tennisGame1) leadingPlayer() string {
+	if game.player1Points >= game.player2Points {
+		return game.player1Name
 	}
+
+	return game.player2Name
 }
 
 func winOrAdvantageFor(points int) string {
