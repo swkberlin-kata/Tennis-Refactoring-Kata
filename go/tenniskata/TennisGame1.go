@@ -16,54 +16,54 @@ func (p *game1Player) Score() string {
 	return pointsToScore[p.points]
 }
 
-type tennisGame1 struct {
+type game1 struct {
 	player1, player2 game1Player
 }
 
 func TennisGame1(player1Name string, player2Name string) TennisGame {
-	return &tennisGame1{
+	return &game1{
 		player1: game1Player{ name: player1Name },
 		player2: game1Player{ name: player2Name },
 	}
 }
 
-func (game *tennisGame1) GetScore() string {
-	if game.player1.points == game.player2.points {
-		return tiedScore(game)
+func (g *game1) GetScore() string {
+	if g.player1.points == g.player2.points {
+		return tiedScore(g)
 	}
 
-	if game.winOrAdvantage() {
-		diff := differenceInPoints(game)
+	if g.winOrAdvantage() {
+		diff := differenceInPoints(g)
 
-		return winOrAdvantageFor(diff) + " " + game.leadingPlayer()
+		return winOrAdvantageFor(diff) + " " + g.leadingPlayer()
 	}
 
-	return game.player1.Score() + "-" + game.player2.Score()
+	return g.player1.Score() + "-" + g.player2.Score()
 }
 
-func (game *tennisGame1) winOrAdvantage() bool {
-	return game.player1.points >= 4 || game.player2.points >= 4
+func (g *game1) winOrAdvantage() bool {
+	return g.player1.points >= 4 || g.player2.points >= 4
 }
 
-func differenceInPoints(game *tennisGame1) int {
-	return game.player1.points - game.player2.points
+func differenceInPoints(g *game1) int {
+	return g.player1.points - g.player2.points
 }
 
-func (game *tennisGame1) WonPoint(playerName string) {
+func (g *game1) WonPoint(playerName string) {
 	if playerName == "player1" {
-		game.player1.points += 1
+		g.player1.points += 1
 	} else {
-		game.player2.points += 1
+		g.player2.points += 1
 	}
 }
 
 // will not return proper if equal.
-func (game *tennisGame1) leadingPlayer() string {
-	if game.player1.points >= game.player2.points {
-		return game.player1.name
+func (g *game1) leadingPlayer() string {
+	if g.player1.points >= g.player2.points {
+		return g.player1.name
 	}
 
-	return game.player2.name
+	return g.player2.name
 }
 
 func winOrAdvantageFor(points int) string {
@@ -73,8 +73,8 @@ func winOrAdvantageFor(points int) string {
 	return "Advantage"
 }
 
-func tiedScore(game *tennisGame1) string {
-	switch game.player1.points {
+func tiedScore(g *game1) string {
+	switch g.player1.points {
 	case 0:
 		return "Love-All"
 	case 1:
