@@ -29,11 +29,11 @@ func TennisGame1(player1Name string, player2Name string) TennisGame {
 
 func (g *game1) GetScore() string {
 	if g.player1.points == g.player2.points {
-		return tiedScore(g)
+		return g.tiedScore()
 	}
 
 	if g.winOrAdvantage() {
-		diff := differenceInPoints(g)
+		diff := g.differenceInPoints()
 
 		return winOrAdvantageFor(diff) + " " + g.leadingPlayer()
 	}
@@ -45,7 +45,7 @@ func (g *game1) winOrAdvantage() bool {
 	return g.player1.points >= 4 || g.player2.points >= 4
 }
 
-func differenceInPoints(g *game1) int {
+func (g *game1) differenceInPoints() int {
 	return g.player1.points - g.player2.points
 }
 
@@ -74,7 +74,7 @@ func winOrAdvantageFor(points int) string {
 	return "Advantage"
 }
 
-func tiedScore(g *game1) string {
+func (g *game1) tiedScore() string {
 	score := g.player1.Score()
 	if score == "" || score == "Forty" {
 		return "Deuce"
